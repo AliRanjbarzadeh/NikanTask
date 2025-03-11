@@ -1,6 +1,11 @@
 plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.kotlin.android)
+	alias(libs.plugins.hilt)
+	id("androidx.navigation.safeargs.kotlin")
+	id("org.jetbrains.kotlin.kapt")
+	id("kotlin-parcelize")
+	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -30,6 +35,9 @@ android {
 	kotlinOptions {
 		jvmTarget = "11"
 	}
+	buildFeatures {
+		dataBinding = true
+	}
 }
 
 dependencies {
@@ -39,6 +47,45 @@ dependencies {
 	implementation(libs.material)
 	implementation(libs.androidx.activity)
 	implementation(libs.androidx.constraintlayout)
+
+	//Network
+	implementation(libs.squareup.okhttp3)
+	implementation(libs.squareup.retrofit)
+	implementation(libs.squareup.retrofit.gson)
+
+	// Coroutines
+	implementation(libs.kotlinx.coroutines.core)
+	implementation(libs.kotlinx.coroutines.android)
+	implementation(libs.retrofit2.kotlin.coroutines.adapter)
+
+	// Navigation
+	implementation(libs.androidx.navigation.fragment.ktx)
+	implementation(libs.androidx.navigation.ui.ktx)
+
+	//Hilt
+	implementation(libs.hilt.android)
+	kapt(libs.hilt.android.compiler)
+
+	// Calligraphy
+	implementation(libs.calligraphy3)
+	implementation(libs.viewpump)
+
+	//Others
+	implementation(libs.ssp)
+	implementation(libs.sdp)
+	implementation(libs.androidx.core.splashscreen)
+	implementation(libs.androidx.multidex)
+	implementation(libs.keyboardObserver)
+	implementation(libs.hawk)
+	implementation(libs.lottie)
+	implementation(libs.materialDialog.core)
+	implementation(libs.materialDialog.bottomsheets)
+	implementation(libs.play.services.maps)
+	implementation(libs.play.services.location)
+
+	//Tests
+	testImplementation(libs.mockito.core)
+	testImplementation(libs.mockito.kotlin)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
