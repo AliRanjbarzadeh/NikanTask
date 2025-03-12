@@ -3,9 +3,8 @@ plugins {
 	alias(libs.plugins.kotlin.android)
 	alias(libs.plugins.hilt)
 	id("androidx.navigation.safeargs.kotlin")
-	id("org.jetbrains.kotlin.kapt")
+	id("com.google.devtools.ksp")
 	id("kotlin-parcelize")
-	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -18,8 +17,13 @@ android {
 		targetSdk = 35
 		versionCode = 1
 		versionName = "1.0"
+		multiDexEnabled = true
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+		ksp {
+			arg("room.schemaLocation", "$projectDir/schemas")
+		}
 	}
 
 	buildTypes {
@@ -36,6 +40,7 @@ android {
 		jvmTarget = "11"
 	}
 	buildFeatures {
+		//noinspection DataBindingWithoutKapt
 		dataBinding = true
 	}
 }
@@ -53,6 +58,12 @@ dependencies {
 	implementation(libs.squareup.retrofit)
 	implementation(libs.squareup.retrofit.gson)
 
+	// Room
+	implementation(libs.androidx.room.runtime)
+	testImplementation(libs.junit.jupiter)
+	ksp(libs.androidx.room.compiler)
+	implementation(libs.androidx.room.ktx)
+
 	// Coroutines
 	implementation(libs.kotlinx.coroutines.core)
 	implementation(libs.kotlinx.coroutines.android)
@@ -64,7 +75,7 @@ dependencies {
 
 	//Hilt
 	implementation(libs.hilt.android)
-	kapt(libs.hilt.android.compiler)
+	ksp(libs.hilt.android.compiler)
 
 	// Calligraphy
 	implementation(libs.calligraphy3)
@@ -80,8 +91,6 @@ dependencies {
 	implementation(libs.lottie)
 	implementation(libs.materialDialog.core)
 	implementation(libs.materialDialog.bottomsheets)
-	implementation(libs.play.services.maps)
-	implementation(libs.play.services.location)
 
 	//Tests
 	testImplementation(libs.mockito.core)

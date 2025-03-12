@@ -1,0 +1,6 @@
+<resources>
+    <!--Fonts-->
+    <string name="font_regular">fonts/fa/regular.ttf</string>
+    <string name="font_light">fonts/fa/light.ttf</string>
+    <string name="font_bold">fonts/fa/bold.ttf</string>
+</resources>

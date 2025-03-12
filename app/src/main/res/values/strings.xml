@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">NikanTask</string>
+    <string name="app_name" translatable="false">نیکان ویزیتور</string>
+
+    <!--Fonts-->
+    <string name="font_regular">fonts/en/regular.ttf</string>
+    <string name="font_light">fonts/en/light.ttf</string>
+    <string name="font_bold">fonts/en/bold.ttf</string>
 </resources>
