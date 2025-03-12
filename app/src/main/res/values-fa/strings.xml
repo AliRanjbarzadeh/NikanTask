@@ -7,4 +7,5 @@
     <string name="products">محصولات</string>
     <string name="customers">مشتریان</string>
     <string name="add_customer">افزودن مشتری</string>
+    <string name="nothing_found">موردی یافت نشد</string>
 </resources>

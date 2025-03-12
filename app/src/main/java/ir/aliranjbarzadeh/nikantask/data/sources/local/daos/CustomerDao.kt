@@ -18,6 +18,6 @@ interface CustomerDao {
 	@Update(onConflict = OnConflictStrategy.IGNORE)
 	suspend fun update(customerModel: CustomerModel): Int
 
-	@Query("UPDATE customers SET deleted_at = DATE('now') WHERE id = :id")
+	@Query("UPDATE customers SET deleted_at = CURRENT_TIMESTAMP WHERE id = :id")
 	suspend fun destroy(id: Long): Int
 }

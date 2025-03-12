@@ -11,6 +11,7 @@ import ir.aliranjbarzadeh.nikantask.core.AppConfig
 import ir.aliranjbarzadeh.nikantask.core.helpers.PackageHelper
 import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
 import ir.aliranjbarzadeh.nikantask.data.sources.local.Database
+import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.CustomerDao
 import java.util.concurrent.Executors
 import javax.inject.Singleton
 
@@ -33,4 +34,9 @@ object DatabaseModule {
 			logger.info("SQL Query: $sqlQuery, Args: $bindArgs", "RoomQuery")
 		}, Executors.newSingleThreadExecutor())
 	}.build()
+
+	/*===================Daos===================*/
+	@Provides
+	@Singleton
+	fun providesCustomerDao(database: Database): CustomerDao = database.customerDao
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -14,12 +15,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ir.aliranjbarzadeh.nikantask.R
 import ir.aliranjbarzadeh.nikantask.databinding.LoadingBinding
+import ir.aliranjbarzadeh.nikantask.databinding.TemplateEmptyListBinding
 
 abstract class BaseFragment<VDB : ViewDataBinding>(
 	@LayoutRes private val layoutResId: Int,
 	@StringRes private val titleResId: Int,
 	private val isShowBackButton: Boolean,
 ) : Fragment() {
+	protected val TAG = "${this::class.java.simpleName.replace("Fragment", "")}Log"
 
 	lateinit var binding: VDB
 
@@ -58,6 +61,18 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 			try {
 				parentView.removeView(loadingBinding.root)
 			} catch (_: Exception) {
+			}
+		}
+	}
+
+	protected open fun initEmptyList(isEmptyList: Boolean) {
+		getMainView()?.also {
+			if (isEmptyList) {
+				val emptyListBinding = TemplateEmptyListBinding.inflate(layoutInflater, it, false)
+				it.addView(emptyListBinding.root)
+			} else {
+				val emptyListView = it.findViewById<ConstraintLayout>(R.id.cl_empty_list)
+				it.removeView(emptyListView)
 			}
 		}
 	}

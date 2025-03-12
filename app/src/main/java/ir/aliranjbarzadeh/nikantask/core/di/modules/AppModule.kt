@@ -11,6 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.aliranjbarzadeh.nikantask.core.dispatchers.DispatchersProvider
 import ir.aliranjbarzadeh.nikantask.core.dispatchers.DispatchersProviderImpl
+import ir.aliranjbarzadeh.nikantask.core.exceptions.LocalExceptionHandler
 import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
 import javax.inject.Singleton
 
@@ -33,4 +34,8 @@ object AppModule {
 	@Provides
 	@Singleton
 	fun providesLogger(@ApplicationContext appContext: Context): Logger = Logger(appContext)
+
+	@Provides
+	@Singleton
+	fun providesLocalExceptionHandler(): LocalExceptionHandler = LocalExceptionHandler()
 }
