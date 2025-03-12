@@ -3,4 +3,8 @@
     <string name="font_regular">fonts/fa/regular.ttf</string>
     <string name="font_light">fonts/fa/light.ttf</string>
     <string name="font_bold">fonts/fa/bold.ttf</string>
+    <string name="orders">سفارشات</string>
+    <string name="products">محصولات</string>
+    <string name="customers">مشتریان</string>
+    <string name="add_customer">افزودن مشتری</string>
 </resources>

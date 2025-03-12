@@ -3,7 +3,7 @@ package ir.aliranjbarzadeh.nikantask.core.exceptions
 import com.google.gson.Gson
 import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
 import ir.aliranjbarzadeh.nikantask.data.models.Error
-import ir.aliranjbarzadeh.nikantask.domain.network.HttpErrors
+import ir.aliranjbarzadeh.nikantask.domain.StatusCode
 import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
@@ -58,7 +58,7 @@ class NetworkExceptionHandler @Inject constructor(private val gson: Gson, privat
 	private fun getHttpError(statusCode: Int, body: ResponseBody?): Error {
 		return try {
 			val error = gson.fromJson(body?.string(), Error::class.java)
-			error.statusCode = HttpErrors.fromValue(statusCode)
+			error.statusCode = StatusCode.fromValue(statusCode)
 			error
 		} catch (e: Throwable) {
 			e.printStackTrace()

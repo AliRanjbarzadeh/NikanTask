@@ -5,4 +5,8 @@
     <string name="font_regular">fonts/en/regular.ttf</string>
     <string name="font_light">fonts/en/light.ttf</string>
     <string name="font_bold">fonts/en/bold.ttf</string>
+    <string name="orders">Orders</string>
+    <string name="products">Products</string>
+    <string name="customers">Customers</string>
+    <string name="add_customer">Add customer</string>
 </resources>

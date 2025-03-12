@@ -91,6 +91,7 @@ dependencies {
 	implementation(libs.lottie)
 	implementation(libs.materialDialog.core)
 	implementation(libs.materialDialog.bottomsheets)
+	implementation(libs.persianDate)
 
 	//Tests
 	testImplementation(libs.mockito.core)

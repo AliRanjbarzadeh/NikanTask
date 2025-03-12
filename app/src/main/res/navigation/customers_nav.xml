@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customers_nav"
+    app:startDestination="@id/customersFragment">
+
+    <fragment
+        android:id="@+id/customersFragment"
+        tools:layout="@layout/fragment_customers"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.CustomersFragment"
+        android:label="CustomersFragment" />
+</navigation>
