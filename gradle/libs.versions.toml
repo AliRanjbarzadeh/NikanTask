@@ -31,6 +31,7 @@ lottie = "6.4.0"
 materialDialog = "3.3.0"
 materialDialogB = "3.2.1"
 ksp = "2.0.21-1.0.27"
+persianDate = "1.7.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -68,6 +69,7 @@ hawk = { group = "com.orhanobut", name = "hawk", version.ref = "hawk" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 materialDialog-core = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialog" }
 materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name = "bottomsheets", version.ref = "materialDialogB" }
+persianDate = { group = "com.github.samanzamani", name = "PersianDate", version.ref = "persianDate" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,6 +1,8 @@
 package ir.aliranjbarzadeh.nikantask.core
 
 object AppConfig {
+	const val DATABASE = "shop_management"
+
 	object Defaults {
 		const val LANGUAGE = "fa"
 		const val BASE_URL_DEV = ""

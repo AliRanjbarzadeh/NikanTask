@@ -1,16 +1,15 @@
 package ir.aliranjbarzadeh.nikantask.data.models
 
 import com.google.gson.JsonElement
-import ir.aliranjbarzadeh.nikantask.domain.network.HttpErrors
+import ir.aliranjbarzadeh.nikantask.domain.StatusCode
 
 
 data class Error(
 	val message: String? = "",
 	val data: JsonElement? = null,
-	val status: Boolean? = false,
-	var statusCode: HttpErrors = HttpErrors.NotDefined,
+	var statusCode: StatusCode = StatusCode.NotDefined,
 ) {
 	override fun toString(): String {
-		return "ErrorBody(message=$message, data=$data, status=$status, statusCode=$statusCode)"
+		return "ErrorBody(message=$message, data=$data, statusCode=$statusCode)"
 	}
 }
