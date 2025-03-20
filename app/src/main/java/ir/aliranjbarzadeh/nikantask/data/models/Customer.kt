@@ -14,9 +14,9 @@ data class Customer(
 	var updatedAt: Date,
 ) : Parcelable {
 	companion object {
-		fun forCreate(name: String, mobile: String) {
+		fun forCreate(name: String, mobile: String): Customer {
 			val date = DateTimeHelper.currentDateUTC()
-			Customer(
+			return Customer(
 				name = name, mobile = mobile, createdAt = date, updatedAt = date
 			)
 		}

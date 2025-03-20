@@ -31,26 +31,36 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
 
-		//Set title
-		requireActivity().setTitle(titleResId)
+		setTitle()
 
-		//Set background of fragment
-		binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.md_theme_background))
+		setBackgroundColor()
 
-		//Show or hide back button
 		toggleBackButton(isShowBackButton)
 
-		//Loading
-		loadingBinding = LoadingBinding.inflate(layoutInflater, null, false)
+		prepareLoadingView()
 
 		return binding.root
 	}
 
+	private fun setTitle() {
+		requireActivity().setTitle(titleResId)
+	}
+
+	private fun setBackgroundColor() {
+		binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.md_theme_background))
+	}
+
+	private fun prepareLoadingView() {
+		loadingBinding = LoadingBinding.inflate(layoutInflater, null, false)
+	}
+
 	protected open fun getMainView(): ViewGroup? = null
 
-	protected fun initLoading(isLoading: Boolean) {
-		getMainView()?.also {
-			toggleLoading(isLoading, it)
+	protected fun initLoading(isLoading: Boolean?) {
+		isLoading?.let {
+			getMainView()?.also { mainView ->
+				toggleLoading(isLoading, mainView)
+			}
 		}
 	}
 
@@ -65,14 +75,20 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 		}
 	}
 
-	protected open fun initEmptyList(isEmptyList: Boolean) {
-		getMainView()?.also {
+	protected open fun initEmptyList(isEmptyList: Boolean?) {
+		isEmptyList?.let { toggleEmptyList(isEmptyList) }
+	}
+
+	protected fun toggleEmptyList(isEmptyList: Boolean) {
+		getMainView()?.also { mainView ->
 			if (isEmptyList) {
-				val emptyListBinding = TemplateEmptyListBinding.inflate(layoutInflater, it, false)
-				it.addView(emptyListBinding.root)
+				val emptyListBinding = TemplateEmptyListBinding.inflate(layoutInflater, mainView, false)
+				mainView.addView(emptyListBinding.root)
 			} else {
-				val emptyListView = it.findViewById<ConstraintLayout>(R.id.cl_empty_list)
-				it.removeView(emptyListView)
+				val emptyListView = mainView.findViewById<ConstraintLayout>(R.id.cl_empty_list)
+				emptyListView?.let {
+					mainView.removeView(emptyListView)
+				}
 			}
 		}
 	}

@@ -3,15 +3,13 @@ package ir.aliranjbarzadeh.nikantask.core.extensions
 import android.graphics.Typeface
 import android.view.View
 import androidx.annotation.IdRes
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.databinding.Observable
 import androidx.databinding.ObservableInt
 import com.google.android.material.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView
-import kotlin.let
-import kotlin.ranges.until
-import androidx.core.view.size
-import androidx.core.view.get
 
 fun BottomNavigationView.changeFont(typeface: Typeface) {
 	for (i in 0 until menu.size) {

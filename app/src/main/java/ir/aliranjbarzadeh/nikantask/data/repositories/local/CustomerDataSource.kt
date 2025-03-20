@@ -17,6 +17,7 @@ import javax.inject.Singleton
 class CustomerDataSource @Inject constructor(
 	private val dao: CustomerDao,
 	private val localExceptionHandler: LocalExceptionHandler,
+	private val dispatchersProvider: DispatchersProvider,
 ) : CustomerDataSource {
 	override fun list(): Flow<ResponseResult<List<Customer>>> = flow {
 		try {

@@ -7,7 +7,17 @@
 
     <fragment
         android:id="@+id/customersFragment"
-        tools:layout="@layout/fragment_customers"
         android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.CustomersFragment"
-        android:label="CustomersFragment" />
+        android:label="CustomersFragment"
+        tools:layout="@layout/fragment_customers">
+        <action
+            android:id="@+id/to_add_customer"
+            app:destination="@id/addCustomerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCustomerFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.add.AddCustomerFragment"
+        android:label="AddCustomerFragment"
+        tools:layout="@layout/fragment_add_customer" />
 </navigation>

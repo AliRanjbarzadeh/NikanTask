@@ -8,16 +8,11 @@ interface ListViewModel<T> {
 	val _items: MutableStateFlow<ResponseResult.Success<List<T>>?>
 	val items: StateFlow<ResponseResult.Success<List<T>>?>
 
-	val _isEmptyList: MutableStateFlow<Boolean>
-	val isEmptyList: StateFlow<Boolean>
+	val _isEmptyList: MutableStateFlow<Boolean?>
+	val isEmptyList: StateFlow<Boolean?>
 
 	fun setItems(result: ResponseResult.Success<List<T>>) {
 		_items.value = result
 		_isEmptyList.value = result.data.isEmpty()
-	}
-
-	fun clearItems() {
-		_items.value = ResponseResult.Success(emptyList())
-		_isEmptyList.value = true
 	}
 }

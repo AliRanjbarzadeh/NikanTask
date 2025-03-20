@@ -21,9 +21,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/base_nav" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <ir.aliranjbarzadeh.nikantask.presentation.libs.StackedBottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="0dp"
+            android:background="@color/md_theme_surface"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

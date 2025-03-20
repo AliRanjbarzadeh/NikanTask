@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 abstract class BaseViewModel(private val dispatchers: DispatchersProvider) : ViewModel(), CoroutineScope {
-	protected open val _isLoading = MutableStateFlow<Boolean>(false)
+	protected open val _isLoading = MutableStateFlow<Boolean?>(null)
 	val isLoading = _isLoading.asStateFlow()
 
 	protected val _error = MutableStateFlow<ResponseResult.Error?>(null)
