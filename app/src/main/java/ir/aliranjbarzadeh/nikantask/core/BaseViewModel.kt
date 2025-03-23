@@ -23,6 +23,10 @@ abstract class BaseViewModel(private val dispatchers: DispatchersProvider) : Vie
 	override val coroutineContext: CoroutineContext
 		get() = dispatchers.getMain() + SupervisorJob()
 
+	fun setError(result: ResponseResult.Error) {
+		_error.value = result
+	}
+
 	fun execute(job: suspend () -> Unit) {
 		viewModelScope.launch {
 			withContext(dispatchers.getIO()) {

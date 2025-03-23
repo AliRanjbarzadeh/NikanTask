@@ -9,11 +9,11 @@ import javax.inject.Singleton
 
 @Singleton
 class CustomerRepositoryImpl @Inject constructor(private val dataSource: CustomerDataSource) : CustomerRepository {
-	override fun list(): Flow<ResponseResult<List<Customer>>> = dataSource.list()
+	override fun list(limit: Int, offset: Int): Flow<ResponseResult<List<Customer>>> = dataSource.list(limit, offset)
 
-	override fun store(customer: Customer): Flow<ResponseResult<Long>> = dataSource.store(customer)
+	override fun store(customer: Customer): Flow<ResponseResult<Customer>> = dataSource.store(customer)
 
-	override fun update(customer: Customer): Flow<ResponseResult<Int>> = dataSource.update(customer)
+	override fun update(customer: Customer): Flow<ResponseResult<Customer>> = dataSource.update(customer)
 
-	override fun destroy(customer: Customer): Flow<ResponseResult<Int>> = dataSource.destroy(customer)
+	override fun destroy(customer: Customer): Flow<ResponseResult<Boolean>> = dataSource.destroy(customer)
 }

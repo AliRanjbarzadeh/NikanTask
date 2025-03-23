@@ -8,6 +8,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CustomerListUseCase @Inject constructor(private val repository: CustomerRepository) {
-	operator fun invoke(limit: Int, offset: Int): Flow<ResponseResult<List<Customer>>> = repository.list(limit, offset)
+class CustomerStoreUseCase @Inject constructor(private val repository: CustomerRepository) {
+	operator fun invoke(customer: Customer): Flow<ResponseResult<Customer>> = repository.store(customer)
 }

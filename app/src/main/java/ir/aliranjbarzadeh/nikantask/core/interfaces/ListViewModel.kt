@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 interface ListViewModel<T> {
+	val limit: Int
+	var offset: Int
+
 	val _items: MutableStateFlow<ResponseResult.Success<List<T>>?>
 	val items: StateFlow<ResponseResult.Success<List<T>>?>
 

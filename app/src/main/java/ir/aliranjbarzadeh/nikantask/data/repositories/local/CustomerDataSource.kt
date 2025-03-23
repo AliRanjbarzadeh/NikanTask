@@ -19,9 +19,9 @@ class CustomerDataSource @Inject constructor(
 	private val localExceptionHandler: LocalExceptionHandler,
 	private val dispatchersProvider: DispatchersProvider,
 ) : CustomerDataSource {
-	override fun list(): Flow<ResponseResult<List<Customer>>> = flow {
+	override fun list(limit: Int, offset: Int): Flow<ResponseResult<List<Customer>>> = flow {
 		try {
-			val items = dao.list()
+			val items = dao.list(limit, offset)
 			emit(ResponseResult.Success(items.map { it.toDomain() }))
 		} catch (e: Exception) {
 			emit(
@@ -35,10 +35,10 @@ class CustomerDataSource @Inject constructor(
 		}
 	}
 
-	override fun store(customer: Customer): Flow<ResponseResult<Long>> = flow {
+	override fun store(customer: Customer): Flow<ResponseResult<Customer>> = flow {
 		try {
-			val result = dao.store(CustomerModel.fromModel(customer))
-			emit(ResponseResult.Success(result))
+			customer.id = dao.store(CustomerModel.fromModel(customer))
+			emit(ResponseResult.Success(customer))
 		} catch (e: Exception) {
 			emit(
 				ResponseResult.Error(
@@ -51,10 +51,10 @@ class CustomerDataSource @Inject constructor(
 		}
 	}
 
-	override fun update(customer: Customer): Flow<ResponseResult<Int>> = flow {
+	override fun update(customer: Customer): Flow<ResponseResult<Customer>> = flow {
 		try {
-			val result = dao.update(CustomerModel.fromModel(customer))
-			emit(ResponseResult.Success(result))
+			dao.update(CustomerModel.fromModel(customer))
+			emit(ResponseResult.Success(customer))
 		} catch (e: Exception) {
 			emit(
 				ResponseResult.Error(
@@ -67,10 +67,9 @@ class CustomerDataSource @Inject constructor(
 		}
 	}
 
-	override fun destroy(customer: Customer): Flow<ResponseResult<Int>> = flow {
+	override fun destroy(customer: Customer): Flow<ResponseResult<Boolean>> = flow {
 		try {
-			val result = dao.destroy(customer.id)
-			emit(ResponseResult.Success(result))
+			emit(ResponseResult.Success(dao.destroy(customer.id) > 0))
 		} catch (e: Exception) {
 			emit(
 				ResponseResult.Error(

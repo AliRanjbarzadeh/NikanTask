@@ -11,13 +11,28 @@
         android:label="CustomersFragment"
         tools:layout="@layout/fragment_customers">
         <action
-            android:id="@+id/to_add_customer"
-            app:destination="@id/addCustomerFragment" />
+            android:id="@+id/to_customer_create"
+            app:destination="@id/customerCreateFragment" />
+        <action
+            android:id="@+id/to_customer_edit"
+            app:destination="@id/customerEditFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/addCustomerFragment"
-        android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.add.AddCustomerFragment"
-        android:label="AddCustomerFragment"
-        tools:layout="@layout/fragment_add_customer" />
+        android:id="@+id/customerCreateFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.create.CustomerCreateFragment"
+        android:label="CustomerCreateFragment"
+        tools:layout="@layout/fragment_customer_create" />
+    <fragment
+        android:id="@+id/customerEditFragment"
+        tools:layout="@layout/fragment_customer_edit"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.customers.edit.CustomerEditFragment"
+        android:label="CustomerEditFragment" >
+        <argument
+            android:name="customer"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Customer" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 </navigation>

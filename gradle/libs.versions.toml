@@ -5,7 +5,7 @@ kotlin = "2.0.21"
 coreKtx = "1.15.0"
 coreSplashscreen = "1.0.1"
 multidex = "2.0.1"
-navigation = "2.8.8"
+navigation = "2.8.9"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -28,10 +28,9 @@ screenSize = "1.1.1"
 keyboardObserver = "1.0.1"
 hawk = "2.0.1"
 lottie = "6.4.0"
-materialDialog = "3.3.0"
-materialDialogB = "3.2.1"
 ksp = "2.0.21-1.0.27"
 persianDate = "1.7.1"
+paging = "3.3.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -67,9 +66,8 @@ sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "screenSiz
 keyboardObserver = { group = "io.github.ParkSangGwon", name = "tedkeyboardobserver", version.ref = "keyboardObserver" }
 hawk = { group = "com.orhanobut", name = "hawk", version.ref = "hawk" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
-materialDialog-core = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialog" }
-materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name = "bottomsheets", version.ref = "materialDialogB" }
 persianDate = { group = "com.github.samanzamani", name = "PersianDate", version.ref = "persianDate" }
+androidx-paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

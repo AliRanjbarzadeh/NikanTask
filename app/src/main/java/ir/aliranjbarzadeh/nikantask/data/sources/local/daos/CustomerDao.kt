@@ -1,5 +1,6 @@
 package ir.aliranjbarzadeh.nikantask.data.sources.local.daos
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -9,8 +10,8 @@ import ir.aliranjbarzadeh.nikantask.data.sources.local.models.CustomerModel
 
 @Dao
 interface CustomerDao {
-	@Query("SELECT * FROM customers WHERE deleted_at IS NULL ORDER BY created_at DESC")
-	suspend fun list(): List<CustomerModel>
+	@Query("SELECT * FROM customers WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT :limit OFFSET :offset")
+	suspend fun list(limit: Int, offset: Int): List<CustomerModel>
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	suspend fun store(customerModel: CustomerModel): Long

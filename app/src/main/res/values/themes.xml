@@ -86,4 +86,18 @@
     <style name="TextAppearance.FontBold" parent="android:TextAppearance">
         <item name="fontPath">@string/font_bold</item>
     </style>
+
+    <style name="MyBottomSheetDialogTheme" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/MyBottomSheet</item>
+    </style>
+
+    <style name="MyBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/MyBottomSheetShape</item>
+    </style>
+
+    <style name="MyBottomSheetShape" parent="ShapeAppearance.Material3.Corner.None">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/_8sdp</item>
+        <item name="cornerSizeTopRight">@dimen/_8sdp</item>
+    </style>
 </resources>

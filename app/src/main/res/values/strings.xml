@@ -10,4 +10,20 @@
     <string name="customers">Customers</string>
     <string name="add_customer">Add customer</string>
     <string name="nothing_found">Nothing Found</string>
+    <string name="full_name">Full name</string>
+    <string name="mobile">Mobile</string>
+    <string name="edit_customer">Edit customer</string>
+    <string name="save">Save</string>
+    <string name="enter_full_name">Please enter full name</string>
+    <string name="enter_mobile">Please enter mobile</string>
+    <string name="error">Error</string>
+    <string name="try_again">Try again</string>
+    <string name="close">Close</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="choose">Choose</string>
+    <string name="update">Update</string>
+    <string name="date">Date</string>
+    <string name="sure_delete">Are you sure to delete %s?</string>
+    <string name="yes">Yes</string>
 </resources>

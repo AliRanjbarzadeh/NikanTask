@@ -3,6 +3,7 @@ package ir.aliranjbarzadeh.nikantask.data.sources.local.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ir.aliranjbarzadeh.nikantask.core.helpers.DateTimeHelper
 import ir.aliranjbarzadeh.nikantask.data.interfaces.ResponseObject
 import ir.aliranjbarzadeh.nikantask.data.models.Customer
 import java.util.Date
@@ -31,13 +32,16 @@ class CustomerModel(
 ) : ResponseObject<Customer> {
 
 	companion object {
-		fun fromModel(customer: Customer) = CustomerModel(
-			id = customer.id,
-			name = customer.name,
-			mobile = customer.mobile,
-			createdAt = customer.createdAt,
-			updatedAt = customer.updatedAt,
-		)
+		fun fromModel(customer: Customer): CustomerModel {
+			val date = DateTimeHelper.currentDateUTC()
+			return CustomerModel(
+				id = customer.id,
+				name = customer.name,
+				mobile = customer.mobile,
+				createdAt = customer.createdAt,
+				updatedAt = date,
+			)
+		}
 	}
 
 	override fun toDomain() = Customer(
@@ -45,6 +49,5 @@ class CustomerModel(
 		name = name,
 		mobile = mobile,
 		createdAt = createdAt,
-		updatedAt = updatedAt
 	)
 }
