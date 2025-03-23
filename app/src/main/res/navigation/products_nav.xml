@@ -9,5 +9,29 @@
         android:id="@+id/productsFragment"
         android:name="ir.aliranjbarzadeh.nikantask.presentation.products.ProductsFragment"
         android:label="ProductsFragment"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/to_product_create"
+            app:destination="@id/productCreateFragment" />
+        <action
+            android:id="@+id/to_product_edit"
+            app:destination="@id/productEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productCreateFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.products.create.ProductCreateFragment"
+        android:label="ProductCreateFragment"
+        tools:layout="@layout/fragment_product_create" />
+    <fragment
+        android:id="@+id/productEditFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.products.edit.ProductEditFragment"
+        android:label="ProductEditFragment"
+        tools:layout="@layout/fragment_product_edit" >
+        <argument
+            android:name="product"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Product" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 </navigation>

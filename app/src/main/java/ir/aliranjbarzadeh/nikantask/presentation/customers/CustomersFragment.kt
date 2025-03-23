@@ -37,7 +37,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 	@Inject
 	lateinit var logger: Logger
 
-	private val customerAdapter = CustomersAdapter().apply {
+	private val customersAdapter = CustomersAdapter().apply {
 		onItemClickListener = this@CustomersFragment
 		onCallListener = this@CustomersFragment
 	}
@@ -104,7 +104,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 				@Suppress("DEPRECATION")
 				bundle.getParcelable("item")
 			}?.let { customer ->
-				if (customerAdapter.addItem(customer)) {
+				if (customersAdapter.addItem(customer)) {
 					toggleEmptyList(false)
 				}
 			}
@@ -117,7 +117,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 				@Suppress("DEPRECATION")
 				bundle.getParcelable("item")
 			}?.let { customer ->
-				customerAdapter.updateItem(position, customer)
+				customersAdapter.updateItem(position, customer)
 			}
 		}
 	}
@@ -126,7 +126,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 		binding.rvCustomers.apply {
 			layoutManager = LinearLayoutManager(requireContext())
 			setHasFixedSize(true)
-			adapter = customerAdapter
+			adapter = customersAdapter
 			reachEnd {
 				viewModel.fetchCustomers(isNextPage = true)
 			}
@@ -146,13 +146,13 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 	private fun initCustomers(result: ResponseResult.Success<List<Customer>>?) {
 		result?.let {
 			logger.debug("data is -> ${result.data}", TAG)
-			customerAdapter.submitList(result.data)
+			customersAdapter.submitList(result.data)
 		}
 	}
 
 	private fun initDestroy(position: Int) {
 		if (position >= 0) {
-			if (customerAdapter.removeItem(position)) {
+			if (customersAdapter.removeItem(position)) {
 				viewModel.listCleared()
 			}
 		}

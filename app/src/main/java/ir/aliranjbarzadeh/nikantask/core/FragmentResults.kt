@@ -5,4 +5,9 @@ object FragmentResults {
 		const val STORE = "customer.store"
 		const val UPDATE = "customer.update"
 	}
+
+	object Product {
+		const val STORE = "product.store"
+		const val UPDATE = "product.update"
+	}
 }

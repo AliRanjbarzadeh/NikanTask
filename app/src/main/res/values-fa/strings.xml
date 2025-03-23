@@ -24,4 +24,8 @@
     <string name="date">تاریخ</string>
     <string name="sure_delete">آیا برای حذف %s اطمینان دارید؟</string>
     <string name="yes">بله</string>
+    <string name="product_name">نام محصول</string>
+    <string name="product_code">کد محصول</string>
+    <string name="add_product">افزودن محصول</string>
+    <string name="edit_product">ویرایش محصول</string>
 </resources>

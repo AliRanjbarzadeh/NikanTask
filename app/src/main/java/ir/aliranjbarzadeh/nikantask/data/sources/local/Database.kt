@@ -7,17 +7,20 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ir.aliranjbarzadeh.nikantask.core.AppConfig
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.CustomerDao
+import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.ProductDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.models.CustomerModel
+import ir.aliranjbarzadeh.nikantask.data.sources.local.models.ProductModel
 import ir.aliranjbarzadeh.nikantask.data.sources.local.Database as BaseDB
 
 @Database(
-	entities = [CustomerModel::class],
-	version = 1,
+	entities = [CustomerModel::class, ProductModel::class],
+	version = 2,
 	exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class Database : RoomDatabase() {
 	abstract val customerDao: CustomerDao
+	abstract val productDao: ProductDao
 
 	companion object {
 		@Volatile

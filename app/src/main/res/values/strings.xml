@@ -26,4 +26,8 @@
     <string name="date">Date</string>
     <string name="sure_delete">Are you sure to delete %s?</string>
     <string name="yes">Yes</string>
+    <string name="product_name">Product name</string>
+    <string name="product_code">Product code</string>
+    <string name="add_product">Add product</string>
+    <string name="edit_product">Edit product</string>
 </resources>
