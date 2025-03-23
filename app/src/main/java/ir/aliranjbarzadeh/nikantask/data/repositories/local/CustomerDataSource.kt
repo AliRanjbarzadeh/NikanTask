@@ -1,68 +1,80 @@
 package ir.aliranjbarzadeh.nikantask.data.repositories.local
 
+import ir.aliranjbarzadeh.nikantask.core.exceptions.LocalExceptionHandler
 import ir.aliranjbarzadeh.nikantask.data.models.Customer
-import ir.aliranjbarzadeh.nikantask.data.models.Error
 import ir.aliranjbarzadeh.nikantask.data.repositories.CustomerDataSource
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.CustomerDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.models.CustomerModel
 import ir.aliranjbarzadeh.nikantask.domain.ResponseResult
 import ir.aliranjbarzadeh.nikantask.domain.StatusCode
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CustomerDataSource @Inject constructor(private val dao: CustomerDao) : CustomerDataSource {
-	override suspend fun list(): ResponseResult<List<Customer>> {
+class CustomerDataSource @Inject constructor(
+	private val dao: CustomerDao,
+	private val localExceptionHandler: LocalExceptionHandler,
+) : CustomerDataSource {
+	override fun list(limit: Int, offset: Int): Flow<ResponseResult<List<Customer>>> = flow {
 		try {
-			val items = dao.list()
-			return ResponseResult.Success(items.map { it.toDomain() })
+			val items = dao.list(limit, offset)
+			emit(ResponseResult.Success(items.map { it.toDomain() }))
 		} catch (e: Exception) {
-			return ResponseResult.Error(
-				Error(
-					message = e.message,
-					statusCode = StatusCode.RoomList
+			emit(
+				ResponseResult.Error(
+					localExceptionHandler.traceErrorException(
+						throwable = e,
+						statusCode = StatusCode.RoomList
+					)
 				)
 			)
 		}
 	}
 
-	override suspend fun store(customer: Customer): ResponseResult<Long> {
+	override fun store(customer: Customer): Flow<ResponseResult<Customer>> = flow {
 		try {
-			val result = dao.store(CustomerModel.fromModel(customer))
-			return ResponseResult.Success(result)
+			customer.id = dao.store(CustomerModel.fromModel(customer))
+			emit(ResponseResult.Success(customer))
 		} catch (e: Exception) {
-			return ResponseResult.Error(
-				Error(
-					message = e.message,
-					statusCode = StatusCode.RoomStore
+			emit(
+				ResponseResult.Error(
+					localExceptionHandler.traceErrorException(
+						throwable = e,
+						statusCode = StatusCode.RoomStore
+					)
 				)
 			)
 		}
 	}
 
-	override suspend fun update(customer: Customer): ResponseResult<Int> {
+	override fun update(customer: Customer): Flow<ResponseResult<Customer>> = flow {
 		try {
-			val result = dao.update(CustomerModel.fromModel(customer))
-			return ResponseResult.Success(result)
+			dao.update(CustomerModel.fromModel(customer))
+			emit(ResponseResult.Success(customer))
 		} catch (e: Exception) {
-			return ResponseResult.Error(
-				Error(
-					message = e.message,
-					statusCode = StatusCode.RoomUpdate
+			emit(
+				ResponseResult.Error(
+					localExceptionHandler.traceErrorException(
+						throwable = e,
+						statusCode = StatusCode.RoomUpdate
+					)
 				)
 			)
 		}
 	}
 
-	override suspend fun destroy(customer: Customer): ResponseResult<Int> {
+	override fun destroy(customer: Customer): Flow<ResponseResult<Boolean>> = flow {
 		try {
-			val result = dao.destroy(customer.id)
-			return ResponseResult.Success(result)
+			emit(ResponseResult.Success(dao.destroy(customer.id) > 0))
 		} catch (e: Exception) {
-			return ResponseResult.Error(
-				Error(
-					message = e.message,
-					statusCode = StatusCode.RoomDestroy
+			emit(
+				ResponseResult.Error(
+					localExceptionHandler.traceErrorException(
+						throwable = e,
+						statusCode = StatusCode.RoomDestroy
+					)
 				)
 			)
 		}

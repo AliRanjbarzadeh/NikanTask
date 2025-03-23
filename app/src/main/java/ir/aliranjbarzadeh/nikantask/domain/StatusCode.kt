@@ -5,6 +5,7 @@ import ir.aliranjbarzadeh.nikantask.domain.StatusCode.entries
 
 enum class StatusCode(val value: Int) {
 	NotDefined(0), // Default or unknown error
+	IOException(1),
 	Unauthorized(401),
 	ServerError(500),
 	TimeOut(408),

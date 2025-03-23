@@ -7,18 +7,24 @@ import java.util.Date
 
 @Parcelize
 data class Customer(
-	val id: Long = 0,
-	val name: String,
-	val mobile: String,
+	var id: Long = 0,
+	var name: String,
+	var mobile: String,
 	var createdAt: Date,
-	var updatedAt: Date,
 ) : Parcelable {
 	companion object {
-		fun forCreate(name: String, mobile: String) {
-			val date = DateTimeHelper.currentDateUTC()
-			Customer(
-				name = name, mobile = mobile, createdAt = date, updatedAt = date
+		fun forDatabase(name: String, mobile: String, createdAt: Date): Customer {
+			return Customer(
+				name = name,
+				mobile = mobile,
+				createdAt = createdAt
 			)
 		}
+	}
+
+	fun getCreatedAtJalali(): String = DateTimeHelper.formatDateTime(createdAt, persianFormat = "j F Y")
+
+	override fun toString(): String {
+		return "Customer(id=$id, name='$name', mobile='$mobile', createdAt=$createdAt)"
 	}
 }

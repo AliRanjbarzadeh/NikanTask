@@ -89,9 +89,8 @@ dependencies {
 	implementation(libs.keyboardObserver)
 	implementation(libs.hawk)
 	implementation(libs.lottie)
-	implementation(libs.materialDialog.core)
-	implementation(libs.materialDialog.bottomsheets)
 	implementation(libs.persianDate)
+	implementation(libs.androidx.paging)
 
 	//Tests
 	testImplementation(libs.mockito.core)

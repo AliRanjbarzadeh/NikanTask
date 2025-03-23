@@ -7,4 +7,25 @@
     <string name="products">محصولات</string>
     <string name="customers">مشتریان</string>
     <string name="add_customer">افزودن مشتری</string>
+    <string name="nothing_found">موردی یافت نشد</string>
+    <string name="full_name">نام و نام خانوادگی</string>
+    <string name="mobile">موبایل</string>
+    <string name="edit_customer">ویرایش مشتری</string>
+    <string name="save">ذخیره</string>
+    <string name="enter_full_name">لطفا نام و نام خانوادگی را وارد کنید</string>
+    <string name="enter_mobile">لطفا موبایل را وارد کنید</string>
+    <string name="error">خطا</string>
+    <string name="try_again">تلاش مجدد</string>
+    <string name="close">بستن</string>
+    <string name="edit">ویرایش</string>
+    <string name="delete">حذف</string>
+    <string name="choose">انتخاب کنید</string>
+    <string name="update">بروزرسانی</string>
+    <string name="date">تاریخ</string>
+    <string name="sure_delete">آیا برای حذف %s اطمینان دارید؟</string>
+    <string name="yes">بله</string>
+    <string name="product_name">نام محصول</string>
+    <string name="product_code">کد محصول</string>
+    <string name="add_product">افزودن محصول</string>
+    <string name="edit_product">ویرایش محصول</string>
 </resources>
