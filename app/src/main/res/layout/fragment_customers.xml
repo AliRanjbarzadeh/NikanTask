@@ -15,7 +15,10 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:contentDescription="@string/customers"
-            android:padding="@dimen/_4sdp"
+            android:paddingStart="@dimen/_4sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_60sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
             tools:listitem="@layout/customer_template" />

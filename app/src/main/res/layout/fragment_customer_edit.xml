@@ -28,7 +28,11 @@
                     android:id="@+id/til_full_name"
                     style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                    app:boxCornerRadiusTopStart="@dimen/_8sdp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_full_name"
@@ -50,7 +54,11 @@
                     android:id="@+id/til_mobile"
                     style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                    app:boxCornerRadiusTopStart="@dimen/_8sdp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_mobile"
@@ -77,6 +85,7 @@
                     android:padding="@dimen/_8sdp"
                     android:text="@string/update"
                     android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_8sdp"
                     app:icon="@drawable/ic_refresh"
                     app:iconGravity="textStart" />
             </LinearLayout>

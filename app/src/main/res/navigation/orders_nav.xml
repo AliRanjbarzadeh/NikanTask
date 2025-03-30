@@ -7,7 +7,110 @@
 
     <fragment
         android:id="@+id/ordersFragment"
-        tools:layout="@layout/fragment_orders"
         android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.OrdersFragment"
-        android:label="OrdersFragment" />
+        android:label="OrdersFragment"
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/to_select_customer"
+            app:destination="@id/selectCustomerFragment" />
+        <action
+            android:id="@+id/to_order_show"
+            app:destination="@id/orderShowFragment" />
+        <action
+            android:id="@+id/to_edit_customer"
+            app:destination="@id/orderEditCustomerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectCustomerFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.customer.SelectCustomerFragment"
+        android:label="SelectCustomerFragment"
+        tools:layout="@layout/fragment_select_customer">
+        <action
+            android:id="@+id/to_select_products"
+            app:destination="@id/selectProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectProductsFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.products.SelectProductsFragment"
+        android:label="SelectProductsFragment"
+        tools:layout="@layout/fragment_select_products">
+        <argument
+            android:name="customer"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Customer" />
+        <action
+            android:id="@+id/to_checkout"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.checkout.CheckoutFragment"
+        android:label="CheckoutFragment"
+        tools:layout="@layout/fragment_checkout">
+        <argument
+            android:name="customer"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Customer" />
+        <argument
+            android:name="products"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Product[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderShowFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.show.OrderShowFragment"
+        android:label="OrderShowFragment"
+        tools:layout="@layout/fragment_order_show">
+        <argument
+            android:name="order_summery"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.OrderSummery" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderEditCustomerFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.edit.customer.OrderEditCustomerFragment"
+        android:label="OrderEditCustomerFragment"
+        tools:layout="@layout/fragment_order_edit_customer">
+        <argument
+            android:name="order_summery"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.OrderSummery" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <action
+            android:id="@+id/to_edit_products"
+            app:destination="@id/orderEditProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderEditProductsFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.edit.products.OrderEditProductsFragment"
+        android:label="OrderEditProductsFragment"
+        tools:layout="@layout/fragment_select_products">
+        <argument
+            android:name="order_summery"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.OrderSummery" />
+        <argument
+            android:name="customer"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Customer" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <action
+            android:id="@+id/to_edit_checkout"
+            app:destination="@id/orderEditCheckoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderEditCheckoutFragment"
+        android:name="ir.aliranjbarzadeh.nikantask.presentation.orders.edit.checkout.OrderEditCheckoutFragment"
+        android:label="OrderEditCheckoutFragment"
+        tools:layout="@layout/fragment_checkout">
+        <argument
+            android:name="order_summery"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.OrderSummery" />
+        <argument
+            android:name="customer"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Customer" />
+        <argument
+            android:name="products"
+            app:argType="ir.aliranjbarzadeh.nikantask.data.models.Product[]" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 </navigation>

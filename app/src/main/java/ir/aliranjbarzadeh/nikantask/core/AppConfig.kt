@@ -12,5 +12,6 @@ object AppConfig {
 	object SessionKeys {
 		const val LOGIN = "user.login"
 		const val LANGUAGE = "user.language"
+		const val SEEDER = "seeder"
 	}
 }

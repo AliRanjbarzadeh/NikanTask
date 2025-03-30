@@ -28,6 +28,7 @@ class CustomersViewModel @Inject constructor(
 
 	override val limit: Int = 30
 	override var offset: Int = 0
+	override var allItemsLoaded: Boolean = false
 
 	override val _items = MutableStateFlow<ResponseResult.Success<List<Customer>>?>(null)
 	override val items: StateFlow<ResponseResult.Success<List<Customer>>?> = _items.asStateFlow()
@@ -48,14 +49,19 @@ class CustomersViewModel @Inject constructor(
 	}
 
 	fun fetchCustomers(isNextPage: Boolean = false) {
+		if (allItemsLoaded) return
+
 		if (isNextPage)
 			offset += limit
-		executeWithLoading {
+
+		executeWithLoading(isNextPage) {
 			customerListUseCase(limit, offset)
 				.collectLatest { result ->
 					if (result is ResponseResult.Success) {
-						setItems(result)
+						setItems(result, isNextPage)
 					} else if (result is ResponseResult.Error) {
+						if (isNextPage)
+							offset -= limit
 						setError(result)
 					}
 				}

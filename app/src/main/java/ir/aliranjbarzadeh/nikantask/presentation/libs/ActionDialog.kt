@@ -9,7 +9,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import ir.aliranjbarzadeh.nikantask.databinding.ActionsTemplateBinding
 import ir.aliranjbarzadeh.nikantask.presentation.utils.OnActionClick
 
-class ActionDialog<T>(context: Context, private val item: T, private val position: Int, private val onActionClick: OnActionClick<T>) : BottomSheetDialog(context) {
+class ActionDialog<T>(
+	context: Context,
+	private val item: T,
+	private val position: Int,
+	private val onActionClick: OnActionClick<T>,
+) : BottomSheetDialog(context) {
 
 	private lateinit var binding: ActionsTemplateBinding
 

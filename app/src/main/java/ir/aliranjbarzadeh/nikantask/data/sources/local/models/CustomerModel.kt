@@ -1,6 +1,5 @@
 package ir.aliranjbarzadeh.nikantask.data.sources.local.models
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ir.aliranjbarzadeh.nikantask.core.helpers.DateTimeHelper
@@ -11,23 +10,13 @@ import java.util.Date
 @Entity(
 	tableName = "customers"
 )
-class CustomerModel(
+data class CustomerModel(
 	@PrimaryKey(autoGenerate = true)
-	val id: Long = 0,
-
-	@ColumnInfo(name = "name")
+	var customerId: Long = 0,
 	val name: String,
-
-	@ColumnInfo(name = "mobile")
 	val mobile: String,
-
-	@ColumnInfo(name = "created_at")
 	val createdAt: Date,
-
-	@ColumnInfo(name = "updated_at")
 	val updatedAt: Date,
-
-	@ColumnInfo(name = "deleted_at")
 	val deletedAt: Date? = null,
 ) : ResponseObject<Customer> {
 
@@ -35,7 +24,7 @@ class CustomerModel(
 		fun fromModel(customer: Customer): CustomerModel {
 			val date = DateTimeHelper.currentDateUTC()
 			return CustomerModel(
-				id = customer.id,
+				customerId = customer.id,
 				name = customer.name,
 				mobile = customer.mobile,
 				createdAt = customer.createdAt,
@@ -45,7 +34,7 @@ class CustomerModel(
 	}
 
 	override fun toDomain() = Customer(
-		id = id,
+		id = customerId,
 		name = name,
 		mobile = mobile,
 		createdAt = createdAt,

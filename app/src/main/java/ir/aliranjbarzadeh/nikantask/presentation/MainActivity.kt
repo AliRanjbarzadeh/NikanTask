@@ -18,7 +18,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 		installSplashScreen()
 		super.onCreate(savedInstanceState)
 
-		//bottom navigation
 		setupBottomNavigation()
 
 		onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -27,7 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 					finish()
 				}
 			}
-
 		})
 	}
 

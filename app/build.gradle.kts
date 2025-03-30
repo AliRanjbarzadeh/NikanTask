@@ -90,7 +90,7 @@ dependencies {
 	implementation(libs.hawk)
 	implementation(libs.lottie)
 	implementation(libs.persianDate)
-	implementation(libs.androidx.paging)
+	implementation(libs.javafaker)
 
 	//Tests
 	testImplementation(libs.mockito.core)

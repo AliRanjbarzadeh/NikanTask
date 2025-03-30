@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="orderSummery"
+            type="ir.aliranjbarzadeh.nikantask.data.models.OrderSummery" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.orders.show.OrderShowFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/order_info"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/md_theme_onPrimary"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="@dimen/_1sdp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_numbers"
+                            android:drawablePadding="@dimen/_4sdp"
+                            android:text="@{String.format(@string/factor, orderSummery.order.id), default=@string/factor}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/md_theme_onPrimaryContainer"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_8sdp">
+
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:clickable="false"
+                                android:ellipsize="end"
+                                android:focusable="false"
+                                android:gravity="start|center_vertical"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="@{String.format(@string/order_items_count, orderSummery.totalItems), default=@string/order_items_count}"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/text_muted"
+                                android:textSize="@dimen/_10ssp"
+                                app:cornerRadius="@dimen/_8sdp"
+                                app:icon="@drawable/ic_numbers"
+                                app:iconGravity="textStart"
+                                app:iconPadding="@dimen/_4sdp"
+                                app:iconSize="@dimen/_10sdp"
+                                app:iconTint="@color/text_muted"
+                                app:rippleColor="@color/white" />
+
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:clickable="false"
+                                android:ellipsize="end"
+                                android:focusable="false"
+                                android:gravity="end|center_vertical"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="@{orderSummery.order.createdAtJalali, default=@string/date}"
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/text_muted"
+                                android:textSize="@dimen/_10ssp"
+                                app:cornerRadius="@dimen/_8sdp"
+                                app:icon="@drawable/ic_time"
+                                app:iconGravity="textStart"
+                                app:iconPadding="@dimen/_4sdp"
+                                app:iconSize="@dimen/_10sdp"
+                                app:iconTint="@color/text_muted" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/customer_info"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/md_theme_onPrimary"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="@dimen/_1sdp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:ellipsize="end"
+                        android:gravity="start|center_vertical"
+                        android:maxLines="1"
+                        android:text="@{orderSummery.customer.name, default=@string/full_name}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/md_theme_onPrimaryContainer"
+                        android:textSize="@dimen/_12ssp"
+                        app:drawableStartCompat="@drawable/ic_person"
+                        app:drawableTint="@color/md_theme_onPrimaryContainer" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_call"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25sdp"
+                        android:ellipsize="end"
+                        android:gravity="start|center_vertical"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:padding="0dp"
+                        android:text="@{orderSummery.customer.mobile, default=@string/mobile}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/text_muted"
+                        android:textSize="@dimen/_10ssp"
+                        app:cornerRadius="@dimen/_8sdp"
+                        app:icon="@drawable/ic_call"
+                        app:iconGravity="textStart"
+                        app:iconPadding="@dimen/_4sdp"
+                        app:iconSize="@dimen/_10sdp"
+                        app:iconTint="@color/text_muted" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/products"
+                android:textSize="@dimen/_16ssp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_products"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:contentDescription="@string/products"
+                android:padding="@dimen/_4sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/order_show_product_template" />
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

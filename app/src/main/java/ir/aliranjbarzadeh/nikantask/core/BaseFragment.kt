@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import ir.aliranjbarzadeh.nikantask.R
 import ir.aliranjbarzadeh.nikantask.databinding.LoadingBinding
 import ir.aliranjbarzadeh.nikantask.databinding.TemplateEmptyListBinding
+import ir.aliranjbarzadeh.nikantask.domain.Loading
 
 abstract class BaseFragment<VDB : ViewDataBinding>(
 	@LayoutRes private val layoutResId: Int,
@@ -42,7 +43,7 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 		return binding.root
 	}
 
-	private fun setTitle() {
+	protected open fun setTitle() {
 		requireActivity().setTitle(titleResId)
 	}
 
@@ -56,10 +57,10 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 
 	protected open fun getMainView(): ViewGroup? = null
 
-	protected fun initLoading(isLoading: Boolean?) {
-		isLoading?.let {
+	protected fun initLoading(loading: Loading?) {
+		loading?.let {
 			getMainView()?.also { mainView ->
-				toggleLoading(isLoading, mainView)
+				toggleLoading(loading == Loading.Normal, mainView)
 			}
 		}
 	}

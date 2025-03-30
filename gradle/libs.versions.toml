@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.1"
 junitJupiter = "5.8.1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
@@ -30,7 +30,7 @@ hawk = "2.0.1"
 lottie = "6.4.0"
 ksp = "2.0.21-1.0.27"
 persianDate = "1.7.1"
-paging = "3.3.6"
+javafaker = "1.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -67,7 +67,7 @@ keyboardObserver = { group = "io.github.ParkSangGwon", name = "tedkeyboardobserv
 hawk = { group = "com.orhanobut", name = "hawk", version.ref = "hawk" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 persianDate = { group = "com.github.samanzamani", name = "PersianDate", version.ref = "persianDate" }
-androidx-paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+javafaker = { group = "com.github.javafaker", name = "javafaker", version.ref = "javafaker" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

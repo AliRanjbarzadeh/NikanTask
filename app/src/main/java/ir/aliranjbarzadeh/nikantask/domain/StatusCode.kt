@@ -16,7 +16,9 @@ enum class StatusCode(val value: Int) {
 	RoomList(-1),
 	RoomStore(-2),
 	RoomUpdate(-3),
-	RoomDestroy(-4);
+	RoomDestroy(-4),
+	RoomSeed(-5),
+	RoomOrderProducts(-6);
 
 	companion object {
 		fun fromValue(value: Int?): StatusCode {

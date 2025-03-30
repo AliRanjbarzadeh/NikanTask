@@ -7,11 +7,11 @@ import ir.aliranjbarzadeh.nikantask.core.BaseHolder
 import ir.aliranjbarzadeh.nikantask.core.BaseListAdapter
 import ir.aliranjbarzadeh.nikantask.data.models.Product
 import ir.aliranjbarzadeh.nikantask.databinding.ProductTemplateBinding
-import ir.aliranjbarzadeh.nikantask.presentation.utils.OnItemClickListener
+import ir.aliranjbarzadeh.nikantask.presentation.utils.OnToolsClick
 
 class ProductsAdapter : BaseListAdapter<Product>(DIFF_CALLBACK) {
 
-	lateinit var onItemClickListener: OnItemClickListener<Product>
+	lateinit var onToolsClick: OnToolsClick<Product>
 
 	companion object {
 		val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Product>() {
@@ -20,7 +20,7 @@ class ProductsAdapter : BaseListAdapter<Product>(DIFF_CALLBACK) {
 			}
 
 			override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
-				return oldItem.name.equals(newItem.name) && oldItem.code.equals(newItem.code)
+				return oldItem.name == newItem.name && oldItem.code == newItem.code
 			}
 		}
 	}
@@ -29,10 +29,10 @@ class ProductsAdapter : BaseListAdapter<Product>(DIFF_CALLBACK) {
 		val binding = ProductTemplateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
 		return object : BaseHolder<Product>(binding) {
-			override fun onBindUI(item: Product, position: Int) {
+			override fun onBindUI(item: Product) {
 				binding.item = item
 
-				binding.imgActions.setOnClickListener { onItemClickListener.onItemClick(item, bindingAdapterPosition) }
+				binding.btnActions.setOnClickListener { onToolsClick.onToolsClick(item, adapterPosition) }
 
 				binding.executePendingBindings()
 			}

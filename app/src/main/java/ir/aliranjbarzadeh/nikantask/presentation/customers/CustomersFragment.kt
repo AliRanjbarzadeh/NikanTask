@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,10 +23,11 @@ import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
 import ir.aliranjbarzadeh.nikantask.data.models.Customer
 import ir.aliranjbarzadeh.nikantask.databinding.FragmentCustomersBinding
 import ir.aliranjbarzadeh.nikantask.domain.ResponseResult
+import ir.aliranjbarzadeh.nikantask.domain.StatusCode
 import ir.aliranjbarzadeh.nikantask.presentation.libs.ActionDialog
 import ir.aliranjbarzadeh.nikantask.presentation.utils.OnActionClick
 import ir.aliranjbarzadeh.nikantask.presentation.utils.OnCallListener
-import ir.aliranjbarzadeh.nikantask.presentation.utils.OnItemClickListener
+import ir.aliranjbarzadeh.nikantask.presentation.utils.OnToolsClick
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -33,12 +35,12 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 	layoutResId = R.layout.fragment_customers,
 	titleResId = R.string.customers,
 	isShowBackButton = false
-), OnItemClickListener<Customer>, FragmentResultListener, OnCallListener, OnActionClick<Customer> {
+), OnToolsClick<Customer>, FragmentResultListener, OnCallListener, OnActionClick<Customer> {
 	@Inject
 	lateinit var logger: Logger
 
 	private val customersAdapter = CustomersAdapter().apply {
-		onItemClickListener = this@CustomersFragment
+		onToolsClick = this@CustomersFragment
 		onCallListener = this@CustomersFragment
 	}
 
@@ -69,7 +71,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 		return binding.main
 	}
 
-	override fun onItemClick(item: Customer, position: Int) {
+	override fun onToolsClick(item: Customer, position: Int) {
 		ActionDialog<Customer>(requireContext(), item, position, this)
 			.show()
 	}
@@ -97,7 +99,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 	}
 
 	override fun initFragmentResultListener(key: String, bundle: Bundle) {
-		if (key.equals(FragmentResults.Customer.STORE)) {
+		if (key == FragmentResults.Customer.STORE) {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 				bundle.getParcelable("item", Customer::class.java)
 			} else {
@@ -106,9 +108,11 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 			}?.let { customer ->
 				if (customersAdapter.addItem(customer)) {
 					toggleEmptyList(false)
+				} else {
+					binding.rvCustomers.smoothScrollToPosition(0)
 				}
 			}
-		} else if (key.equals(FragmentResults.Customer.UPDATE)) {
+		} else if (key == FragmentResults.Customer.UPDATE) {
 			val position = bundle.getInt("position")
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -146,7 +150,7 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 	private fun initCustomers(result: ResponseResult.Success<List<Customer>>?) {
 		result?.let {
 			logger.debug("data is -> ${result.data}", TAG)
-			customersAdapter.submitList(result.data)
+			customersAdapter.addItems(result.data)
 		}
 	}
 
@@ -160,8 +164,24 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 
 	private fun initError(result: ResponseResult.Error?) {
 		result?.let {
-			logger.error("error is -> ${result.data.message}", TAG)
-			logger.error("error is -> ${result.data.statusCode}", TAG)
+			val error = it.data
+
+			logger.error("error is -> ${error.message}", TAG)
+			logger.error("error is -> ${error.statusCode}", TAG)
+			if (error.statusCode == StatusCode.RoomList) {
+				MaterialAlertDialogBuilder(requireContext())
+					.setTitle(R.string.error)
+					.setMessage(error.message)
+					.setPositiveButton(R.string.try_again) { dialog, _ ->
+						viewModel.fetchCustomersIfNeeded()
+						dialog.dismiss()
+					}
+					.setNegativeButton(R.string.close) { dialog, _ ->
+						dialog.dismiss()
+					}
+			} else if (error.statusCode == StatusCode.RoomDestroy) {
+				Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+			}
 		}
 	}
 }

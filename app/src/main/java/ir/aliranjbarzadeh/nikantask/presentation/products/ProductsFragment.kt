@@ -23,7 +23,7 @@ import ir.aliranjbarzadeh.nikantask.databinding.FragmentProductsBinding
 import ir.aliranjbarzadeh.nikantask.domain.ResponseResult
 import ir.aliranjbarzadeh.nikantask.presentation.libs.ActionDialog
 import ir.aliranjbarzadeh.nikantask.presentation.utils.OnActionClick
-import ir.aliranjbarzadeh.nikantask.presentation.utils.OnItemClickListener
+import ir.aliranjbarzadeh.nikantask.presentation.utils.OnToolsClick
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,12 +31,12 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 	layoutResId = R.layout.fragment_products,
 	titleResId = R.string.products,
 	isShowBackButton = false
-), OnItemClickListener<Product>, FragmentResultListener, OnActionClick<Product> {
+), OnToolsClick<Product>, FragmentResultListener, OnActionClick<Product> {
 	@Inject
 	lateinit var logger: Logger
 
 	private val productsAdapter = ProductsAdapter().apply {
-		onItemClickListener = this@ProductsFragment
+		onToolsClick = this@ProductsFragment
 	}
 
 	private val viewModel: ProductsViewModel by viewModels()
@@ -66,7 +66,7 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 		return binding.main
 	}
 
-	override fun onItemClick(item: Product, position: Int) {
+	override fun onToolsClick(item: Product, position: Int) {
 		ActionDialog<Product>(requireContext(), item, position, this)
 			.show()
 	}
@@ -90,7 +90,7 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 	}
 
 	override fun initFragmentResultListener(key: String, bundle: Bundle) {
-		if (key.equals(FragmentResults.Product.STORE)) {
+		if (key == FragmentResults.Product.STORE) {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 				bundle.getParcelable("item", Product::class.java)
 			} else {
@@ -99,9 +99,11 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 			}?.let { product ->
 				if (productsAdapter.addItem(product)) {
 					toggleEmptyList(false)
+				} else {
+					binding.rvProducts.smoothScrollToPosition(0)
 				}
 			}
-		} else if (key.equals(FragmentResults.Product.UPDATE)) {
+		} else if (key == FragmentResults.Product.UPDATE) {
 			val position = bundle.getInt("position")
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -139,7 +141,7 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 	private fun initProducts(result: ResponseResult.Success<List<Product>>?) {
 		result?.let {
 			logger.debug("data is -> ${result.data}", TAG)
-			productsAdapter.submitList(result.data)
+			productsAdapter.addItems(result.data)
 		}
 	}
 
