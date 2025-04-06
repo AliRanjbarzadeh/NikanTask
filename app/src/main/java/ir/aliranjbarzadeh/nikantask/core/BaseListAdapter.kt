@@ -9,8 +9,15 @@ abstract class BaseListAdapter<T>(
 
 	override fun onBindViewHolder(holder: BaseHolder<T>, position: Int) {
 		getItem(position)?.let { item ->
-			holder.onBindUI(item, position)
+			holder.onBindUI(item)
 		}
+	}
+
+	fun addItems(newItems: List<T>) {
+		val combined = currentList.toMutableList().apply {
+			addAll(newItems)
+		}
+		submitList(combined)
 	}
 
 	fun addItem(item: T): Boolean {
@@ -24,6 +31,7 @@ abstract class BaseListAdapter<T>(
 		val newList = currentList.toMutableList()
 		newList[position] = item
 		submitList(newList)
+		notifyItemChanged(position)
 	}
 
 	fun removeItem(position: Int): Boolean {
@@ -31,5 +39,11 @@ abstract class BaseListAdapter<T>(
 		newList.removeAt(position)
 		submitList(newList)
 		return newList.isEmpty()
+	}
+
+	fun clearItems() {
+		val newList = currentList.toMutableList()
+		newList.clear()
+		submitList(newList)
 	}
 }

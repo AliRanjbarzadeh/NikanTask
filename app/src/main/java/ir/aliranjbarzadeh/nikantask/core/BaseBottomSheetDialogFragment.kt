@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
+import ir.aliranjbarzadeh.nikantask.core.utilities.LoggerImpl
 import javax.inject.Inject
 
 abstract class BaseBottomSheetDialogFragment<VDB : ViewDataBinding>(
@@ -16,7 +16,7 @@ abstract class BaseBottomSheetDialogFragment<VDB : ViewDataBinding>(
 ) : BottomSheetDialogFragment() {
 
 	@Inject
-	lateinit var logger: Logger
+	lateinit var logger: LoggerImpl
 
 	lateinit var binding: VDB
 

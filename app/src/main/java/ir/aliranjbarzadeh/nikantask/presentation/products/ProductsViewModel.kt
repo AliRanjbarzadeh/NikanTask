@@ -28,6 +28,7 @@ class ProductsViewModel @Inject constructor(
 
 	override val limit: Int = 30
 	override var offset: Int = 0
+	override var allItemsLoaded: Boolean = false
 
 	override val _items = MutableStateFlow<ResponseResult.Success<List<Product>>?>(null)
 	override val items: StateFlow<ResponseResult.Success<List<Product>>?> = _items.asStateFlow()
@@ -38,7 +39,7 @@ class ProductsViewModel @Inject constructor(
 	override val _destroy = MutableStateFlow<Int>(-1)
 	override val destroy: StateFlow<Int> = _destroy.asStateFlow()
 
-	//Check if already fetched customers
+	//Check if already fetched products
 	fun fetchProductsIfNeeded() {
 		if (_items.value == null) {
 			fetchProducts()
@@ -48,14 +49,19 @@ class ProductsViewModel @Inject constructor(
 	}
 
 	fun fetchProducts(isNextPage: Boolean = false) {
+		if (allItemsLoaded) return
+
 		if (isNextPage)
 			offset += limit
-		executeWithLoading {
+
+		executeWithLoading(isNextPage) {
 			productListUseCase(limit, offset)
 				.collectLatest { result ->
 					if (result is ResponseResult.Success) {
-						setItems(result)
+						setItems(result, isNextPage)
 					} else if (result is ResponseResult.Error) {
+						if (isNextPage)
+							offset -= limit
 						setError(result)
 					}
 				}

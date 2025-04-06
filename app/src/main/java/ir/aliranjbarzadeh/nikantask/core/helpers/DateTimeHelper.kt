@@ -13,9 +13,16 @@ object DateTimeHelper {
 		return Calendar.getInstance().time
 	}
 
-	fun currentDateUTC(): Date {
+	fun currentDateUTC(days: Int = 0, type: String = "dec"): Date {
 		val utcCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
 		utcCalendar.time = currentDate()
+
+		val dayType = if (type == "dec") {
+			-1
+		} else {
+			1
+		}
+		utcCalendar.add(Calendar.DAY_OF_YEAR, days * dayType)
 
 		return utcCalendar.time
 	}

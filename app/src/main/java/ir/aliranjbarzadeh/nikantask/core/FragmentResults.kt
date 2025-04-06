@@ -10,4 +10,9 @@ object FragmentResults {
 		const val STORE = "product.store"
 		const val UPDATE = "product.update"
 	}
+
+	object Order {
+		const val STORE = "order.store"
+		const val UPDATE = "order.update"
+	}
 }

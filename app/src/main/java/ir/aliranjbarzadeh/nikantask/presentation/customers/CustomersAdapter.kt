@@ -8,11 +8,11 @@ import ir.aliranjbarzadeh.nikantask.core.BaseListAdapter
 import ir.aliranjbarzadeh.nikantask.data.models.Customer
 import ir.aliranjbarzadeh.nikantask.databinding.CustomerTemplateBinding
 import ir.aliranjbarzadeh.nikantask.presentation.utils.OnCallListener
-import ir.aliranjbarzadeh.nikantask.presentation.utils.OnItemClickListener
+import ir.aliranjbarzadeh.nikantask.presentation.utils.OnToolsClick
 
 class CustomersAdapter : BaseListAdapter<Customer>(DIFF_CALLBACK) {
 
-	lateinit var onItemClickListener: OnItemClickListener<Customer>
+	lateinit var onToolsClick: OnToolsClick<Customer>
 	lateinit var onCallListener: OnCallListener
 
 	companion object {
@@ -22,7 +22,7 @@ class CustomersAdapter : BaseListAdapter<Customer>(DIFF_CALLBACK) {
 			}
 
 			override fun areContentsTheSame(oldItem: Customer, newItem: Customer): Boolean {
-				return oldItem.name.equals(newItem.name) && oldItem.mobile.equals(newItem.mobile)
+				return oldItem.name == newItem.name && oldItem.mobile == newItem.mobile
 			}
 		}
 	}
@@ -31,10 +31,10 @@ class CustomersAdapter : BaseListAdapter<Customer>(DIFF_CALLBACK) {
 		val binding = CustomerTemplateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
 		return object : BaseHolder<Customer>(binding) {
-			override fun onBindUI(item: Customer, position: Int) {
+			override fun onBindUI(item: Customer) {
 				binding.item = item
 
-				binding.imgActions.setOnClickListener { onItemClickListener.onItemClick(item, bindingAdapterPosition) }
+				binding.btnActions.setOnClickListener { onToolsClick.onToolsClick(item, adapterPosition) }
 
 				binding.btnCall.setOnClickListener {
 					onCallListener.onCall(item.mobile)

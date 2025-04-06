@@ -11,7 +11,9 @@ import ir.aliranjbarzadeh.nikantask.core.AppConfig
 import ir.aliranjbarzadeh.nikantask.core.helpers.PackageHelper
 import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
 import ir.aliranjbarzadeh.nikantask.data.sources.local.Database
+import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.AuthDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.CustomerDao
+import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.OrderDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.ProductDao
 import java.util.concurrent.Executors
 import javax.inject.Singleton
@@ -44,4 +46,14 @@ object DatabaseModule {
 	@Provides
 	@Singleton
 	fun providesProductDao(database: Database): ProductDao = database.productDao
+
+	@Provides
+	@Singleton
+	fun providesOrderDao(database: Database): OrderDao = database.orderDao
+
+	@Provides
+	@Singleton
+	fun providesAuthDao(database: Database): AuthDao = database.authDao
+
+
 }
