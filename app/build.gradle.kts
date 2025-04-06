@@ -53,21 +53,14 @@ dependencies {
 	implementation(libs.androidx.activity)
 	implementation(libs.androidx.constraintlayout)
 
-	//Network
-	implementation(libs.squareup.okhttp3)
-	implementation(libs.squareup.retrofit)
-	implementation(libs.squareup.retrofit.gson)
-
 	// Room
 	implementation(libs.androidx.room.runtime)
-	testImplementation(libs.junit.jupiter)
 	ksp(libs.androidx.room.compiler)
 	implementation(libs.androidx.room.ktx)
 
 	// Coroutines
 	implementation(libs.kotlinx.coroutines.core)
 	implementation(libs.kotlinx.coroutines.android)
-	implementation(libs.retrofit2.kotlin.coroutines.adapter)
 
 	// Navigation
 	implementation(libs.androidx.navigation.fragment.ktx)
@@ -93,8 +86,6 @@ dependencies {
 	implementation(libs.javafaker)
 
 	//Tests
-	testImplementation(libs.mockito.core)
-	testImplementation(libs.mockito.kotlin)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)

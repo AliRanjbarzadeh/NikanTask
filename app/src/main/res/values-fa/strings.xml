@@ -59,4 +59,11 @@
     <string name="order_edit_customer">ویرایش مشتری (سفارش #%s)</string>
     <string name="order_edit_products">ویرایش محصولات (سفارش #%s)</string>
     <string name="order_edit_checkout">ثبت نهایی (سفارش #%s)</string>
+    <string name="login">ورود</string>
+    <string name="username">نام کاربری</string>
+    <string name="password">کلمه عبور</string>
+    <string name="init_user_error">ایجاد کاربر با مشکل مواجه شد، دوباره تلاش کنید</string>
+    <string name="sth_wrong">خطایی رخ داده است، لطفا دوباره تلاش کنید</string>
+    <string name="enter_username">لطفا نام کاربری را وارد کنید</string>
+    <string name="enter_password">لطفا کلمه عبور را وارد کنید</string>
 </resources>

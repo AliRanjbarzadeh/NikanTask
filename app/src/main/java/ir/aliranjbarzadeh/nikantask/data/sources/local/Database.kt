@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ir.aliranjbarzadeh.nikantask.core.AppConfig
+import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.AuthDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.CustomerDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.OrderDao
 import ir.aliranjbarzadeh.nikantask.data.sources.local.daos.ProductDao
@@ -13,10 +14,19 @@ import ir.aliranjbarzadeh.nikantask.data.sources.local.models.CustomerModel
 import ir.aliranjbarzadeh.nikantask.data.sources.local.models.OrderModel
 import ir.aliranjbarzadeh.nikantask.data.sources.local.models.OrderProductPivot
 import ir.aliranjbarzadeh.nikantask.data.sources.local.models.ProductModel
+import ir.aliranjbarzadeh.nikantask.data.sources.local.models.TokenModel
+import ir.aliranjbarzadeh.nikantask.data.sources.local.models.UserModel
 import ir.aliranjbarzadeh.nikantask.data.sources.local.Database as BaseDB
 
 @Database(
-	entities = [CustomerModel::class, ProductModel::class, OrderModel::class, OrderProductPivot::class],
+	entities = [
+		CustomerModel::class,
+		ProductModel::class,
+		OrderModel::class,
+		OrderProductPivot::class,
+		UserModel::class,
+		TokenModel::class
+	],
 	version = 1,
 	exportSchema = true
 )
@@ -25,6 +35,7 @@ abstract class Database : RoomDatabase() {
 	abstract val customerDao: CustomerDao
 	abstract val productDao: ProductDao
 	abstract val orderDao: OrderDao
+	abstract val authDao: AuthDao
 
 	companion object {
 		@Volatile

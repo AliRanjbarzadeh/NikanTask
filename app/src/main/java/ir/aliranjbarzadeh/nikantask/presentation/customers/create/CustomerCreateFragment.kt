@@ -43,16 +43,6 @@ class CustomerCreateFragment : BaseFragment<FragmentCustomerCreateBinding>(
 
 		binding.viewModel = viewModel
 
-		//Go to next input on click next on keyboard
-		binding.etFullName.setOnEditorActionListener { _, actionId, _ ->
-			if (actionId == EditorInfo.IME_ACTION_NEXT) {
-				binding.etMobile.requestFocus()
-				true
-			} else {
-				false
-			}
-		}
-
 		binding.etFullName.doAfterTextChanged {
 			binding.tilFullName.isErrorEnabled = it.isNullOrEmpty()
 			if (it.isNullOrEmpty())

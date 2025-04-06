@@ -109,7 +109,9 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding>(
 				if (customersAdapter.addItem(customer)) {
 					toggleEmptyList(false)
 				} else {
-					binding.rvCustomers.smoothScrollToPosition(0)
+					binding.rvCustomers.postDelayed({
+						binding.rvCustomers.smoothScrollToPosition(0)
+					}, 200)
 				}
 			}
 		} else if (key == FragmentResults.Customer.UPDATE) {

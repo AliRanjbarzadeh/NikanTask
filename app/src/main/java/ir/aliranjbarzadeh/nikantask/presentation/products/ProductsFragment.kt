@@ -100,7 +100,9 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(
 				if (productsAdapter.addItem(product)) {
 					toggleEmptyList(false)
 				} else {
-					binding.rvProducts.smoothScrollToPosition(0)
+					binding.rvProducts.postDelayed({
+						binding.rvProducts.smoothScrollToPosition(0)
+					}, 200)
 				}
 			}
 		} else if (key == FragmentResults.Product.UPDATE) {

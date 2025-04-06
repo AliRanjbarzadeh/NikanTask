@@ -95,6 +95,7 @@ class OrdersViewModel @Inject constructor(
 		//Reset items & empty list
 		_items.value = null
 		_isEmptyList.value = true
+		allItemsLoaded = false
 	}
 
 	fun seed() {

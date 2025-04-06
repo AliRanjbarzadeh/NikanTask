@@ -51,7 +51,7 @@
     <string name="checkout">Checkout</string>
     <string name="select_products_error">Please add product(s) to shop cart</string>
     <string name="save_order">Save order</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="sure_delete_order">Are you sure to delete order #%s?</string>
     <string name="show_order">Show order</string>
     <string name="product_quantity">Quantity: %s</string>
@@ -61,4 +61,11 @@
     <string name="order_edit_customer">Edit customer (order #%s)</string>
     <string name="order_edit_products">Edit products (order #%s)</string>
     <string name="order_edit_checkout">Checkout (order #%s)</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="init_user_error">Initialize user error, try again</string>
+    <string name="sth_wrong">Something went wrong, try again</string>
+    <string name="enter_username">Please enter username</string>
+    <string name="enter_password">Please enter password</string>
 </resources>

@@ -2,8 +2,6 @@ package ir.aliranjbarzadeh.nikantask.core.di.modules
 
 import android.content.ContentResolver
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +11,7 @@ import ir.aliranjbarzadeh.nikantask.core.dispatchers.DispatchersProvider
 import ir.aliranjbarzadeh.nikantask.core.dispatchers.DispatchersProviderImpl
 import ir.aliranjbarzadeh.nikantask.core.exceptions.LocalExceptionHandler
 import ir.aliranjbarzadeh.nikantask.core.utilities.Logger
+import ir.aliranjbarzadeh.nikantask.core.utilities.LoggerImpl
 import javax.inject.Singleton
 
 @Module
@@ -25,15 +24,11 @@ object AppModule {
 
 	@Provides
 	@Singleton
-	fun providesGson(): Gson = GsonBuilder().create()
-
-	@Provides
-	@Singleton
 	fun providesDispatcher(dispatcherProvider: DispatchersProviderImpl): DispatchersProvider = dispatcherProvider.dispatcher
 
 	@Provides
 	@Singleton
-	fun providesLogger(@ApplicationContext appContext: Context): Logger = Logger(appContext)
+	fun providesLogger(@ApplicationContext appContext: Context): Logger = LoggerImpl(appContext)
 
 	@Provides
 	@Singleton

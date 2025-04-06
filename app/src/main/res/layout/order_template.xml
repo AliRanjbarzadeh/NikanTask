@@ -109,7 +109,8 @@
                         app:iconGravity="textStart"
                         app:iconPadding="@dimen/_4sdp"
                         app:iconSize="@dimen/_10sdp"
-                        app:iconTint="@color/text_muted" />
+                        app:iconTint="@color/text_muted"
+                        app:rippleColor="@color/white" />
 
                 </FrameLayout>
             </LinearLayout>

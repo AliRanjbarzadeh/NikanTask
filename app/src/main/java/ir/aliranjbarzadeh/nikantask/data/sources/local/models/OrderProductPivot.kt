@@ -2,7 +2,7 @@ package ir.aliranjbarzadeh.nikantask.data.sources.local.models
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.ForeignKey.Companion.CASCADE
+import androidx.room.Index
 import ir.aliranjbarzadeh.nikantask.data.models.OrderProduct
 
 @Entity(
@@ -11,6 +11,10 @@ import ir.aliranjbarzadeh.nikantask.data.models.OrderProduct
 	foreignKeys = [
 		ForeignKey(entity = OrderModel::class, parentColumns = ["orderId"], childColumns = ["orderRefId"]),
 		ForeignKey(entity = ProductModel::class, parentColumns = ["productId"], childColumns = ["productRefId"]),
+	],
+	indices = [
+		Index(value = ["orderRefId"]),
+		Index(value = ["productRefId"])
 	]
 )
 data class OrderProductPivot(

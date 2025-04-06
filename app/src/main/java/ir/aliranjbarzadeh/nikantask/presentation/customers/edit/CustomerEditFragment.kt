@@ -2,7 +2,6 @@ package ir.aliranjbarzadeh.nikantask.presentation.customers.edit
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
@@ -48,16 +47,6 @@ class CustomerEditFragment : BaseFragment<FragmentCustomerEditBinding>(
 		super.onViewCreated(view, savedInstanceState)
 
 		binding.viewModel = viewModel
-
-		//Go to next input on click next on keyboard
-		binding.etFullName.setOnEditorActionListener { _, actionId, _ ->
-			if (actionId == EditorInfo.IME_ACTION_NEXT) {
-				binding.etMobile.requestFocus()
-				true
-			} else {
-				false
-			}
-		}
 
 		binding.etFullName.doAfterTextChanged {
 			binding.tilFullName.isErrorEnabled = it.isNullOrEmpty()
